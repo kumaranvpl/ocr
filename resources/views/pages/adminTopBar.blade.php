@@ -32,7 +32,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <strong>{{ base64_decode($_COOKIE["name"]) }}</strong> <i class="fa fa-caret-down"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">My Profile</a></li>
-                            <li><a href="/forgotPasswordMail?id={{ $_COOKIE['id'] }}">Change Password</a></li>
+                            <li><a href="/forgotPassword?id={{ $_COOKIE['id'] }}">Change Password</a></li>
                             <li><a class="md-trigger" data-modal="logout-modal"><i class="icon-logout-1"></i> Logout</a></li>
                         </ul>
                     </li>

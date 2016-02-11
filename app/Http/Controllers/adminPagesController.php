@@ -117,7 +117,9 @@ class adminPagesController extends Controller
     public function deleteUser($id)
     {
         $users = Users::where('id', $id)
-            ->where('added_by', base64_decode($_COOKIE['id']));
+            ->first();
+            //->where('added_by', base64_decode($_COOKIE['id']));
+
         $path = public_path().'/uploads/'.$users->added_by.'/'.$users->id;
         File::deleteDirectory($path);
         if($users->delete())
