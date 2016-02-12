@@ -48,7 +48,7 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'checkAdminCookie' => \App\Http\Middleware\checkAdminCookie::class,
-        'checkUserCookie' => \App\Http\Middleware\checkUserCookie::class,
+        'checkAdminSession' => \App\Http\Middleware\checkAdminSession::class,
+        'checkUserSession' => \App\Http\Middleware\checkUserSession::class,
     ];
 }

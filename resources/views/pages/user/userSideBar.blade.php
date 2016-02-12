@@ -7,7 +7,7 @@
         <!--- Profile -->
         <div class="profile-info">
             <div class="col-xs-8">
-                <div class="profile-text">Welcome <b>{{ base64_decode($_COOKIE['name']) }}</b></div>
+                <div class="profile-text">Welcome <b>{{ Session::get('name') }}</b></div>
             </div>
         </div>
         <!--- Divider -->

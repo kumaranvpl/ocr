@@ -21,7 +21,7 @@ class userPagesController extends Controller
 
     public function __construct()
     {
-        $this->middleware('checkUserCookie');
+        $this->middleware('checkUserSession');
     }
 
     public function home()

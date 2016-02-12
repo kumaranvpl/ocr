@@ -20,7 +20,7 @@ class adminPagesController extends Controller
 
     public function __construct()
     {
-        $this->middleware('checkAdminCookie');
+        $this->middleware('checkAdminSession');
     }
 
     public function home()

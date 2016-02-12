@@ -12,6 +12,7 @@ use Crypt;
 use Hash;
 use Mail;
 use File;
+use Session;
 
 use App\Users;
 use App\Companies;
@@ -27,10 +28,19 @@ class loginController extends Controller
 
     public function logIn(Request $request)
     {
-        if(isset($_COOKIE["admin"]))
+        /*if(isset($_COOKIE["admin"]))
         {
             if(base64_decode($_COOKIE["admin"])=="yes"){return redirect('/admin/dashboard');}
             else {return redirect('/user/dashboard');}
+        }
+        else
+        {
+            return view('login');
+        }*/
+        if(Session::has('admin'))
+        {
+            if(Session::get('admin')=='yes') {return redirect('/admin/dashboard');}
+            else{return redirect('/user/dashboard');}
         }
         else
         {
@@ -43,6 +53,7 @@ class loginController extends Controller
         if(isset($_COOKIE['admin'])) {setcookie("admin", "", time() - 3600);}
         if(isset($_COOKIE['id'])) {setcookie("admin", "", time() - 3600);}
         if(isset($_COOKIE['name'])) {setcookie("admin", "", time() - 3600);}
+        Session::flush();
         return redirect('/login');
     }
 
@@ -61,10 +72,15 @@ class loginController extends Controller
 
     public function verifyPage(Request $request)
     {
-        if(isset($_COOKIE["admin"]))
+        /*if(isset($_COOKIE["admin"]))
         {
             if(base64_decode($_COOKIE["admin"])=="yes"){return redirect('/admin/dashboard');}
             else {return redirect('/user/dashboard');}
+        }*/
+        if(Session::has('admin'))
+        {
+            if(Session::get('admin')=='yes') {return redirect('/admin/dashboard');}
+            else{return redirect('/user/dashboard');}
         }
         else
         {
@@ -99,16 +115,20 @@ class loginController extends Controller
 
         if ( $users && Hash::check($request->password, $users->password)) {
 
-            setcookie("id", base64_encode($users->id), time() + (28800), "/");
-            setcookie("name", base64_encode($users->name), time() + (28800), "/");
+            //setcookie("id", base64_encode($users->id), time() + (28800), "/");
+            //setcookie("name", base64_encode($users->name), time() + (28800), "/");
+            Session::put('id', $users->id);
+            Session::put('name', $users->name);
             if($users->is_admin == 'yes')
             {
-                setcookie("admin", base64_encode("yes"), time() + (28800), "/");
+                ///setcookie("admin", base64_encode("yes"), time() + (28800), "/");
+                Session::put('admin', 'yes');
                 return redirect('/admin/dashboard');
             }
             else
             {
-                setcookie("admin", base64_encode("no"), time() + (28800), "/");
+                //setcookie("admin", base64_encode("no"), time() + (28800), "/");
+                Session::put('admin', 'no');
                 return redirect('/user/dashboard');
             }
 
@@ -262,10 +282,9 @@ class loginController extends Controller
 
     public function forgotPassword(Request $request)
     {
-        if(isset($_COOKIE['admin'])) {setcookie("admin", "", time() - 3600);}
+        /*if(isset($_COOKIE['admin'])) {setcookie("admin", "", time() - 3600);}
         if(isset($_COOKIE['id'])) {setcookie("admin", "", time() - 3600);}
         if(isset($_COOKIE['name'])) {setcookie("admin", "", time() - 3600);}
-
         $users = Users::where('id', base64_decode($request->id))
             ->first();
 
@@ -282,10 +301,11 @@ class loginController extends Controller
         else
         {
             return view("pages.emails.verifyMsg", ['title'=>'failed', 'msg'=>'Email does not exist']);
-        }
+        }*/
+        return view('forgotPassword');
     }
 
-    /*public function forgotPasswordPost(Request $request)
+    public function forgotPasswordPost(Request $request)
     {
         $this->validate($request, [
             'email' => 'required|email',
@@ -307,7 +327,7 @@ class loginController extends Controller
             return view("pages.emails.verifyMsg", ['title'=>'failed', 'msg'=>'Email does not exist']);
         }
 
-    }*/
+    }
 
     public function forgotPasswordMail()
     {

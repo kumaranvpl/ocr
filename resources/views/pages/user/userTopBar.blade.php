@@ -29,10 +29,10 @@
                 <ul class="nav navbar-nav navbar-right top-navbar">
                     <li class="dropdown iconify hide-phone"><a href="#" onclick="javascript:toggle_fullscreen()"><i class="icon-resize-full-2"></i></a></li>
                     <li class="dropdown topbar-profile">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <strong>{{ base64_decode($_COOKIE["name"]) }}</strong> <i class="fa fa-caret-down"></i></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <strong>{{ Session::get('name') }}</strong> <i class="fa fa-caret-down"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">My Profile</a></li>
-                            <li><a href="/forgotPassword?id={{ $_COOKIE['id'] }}">Change Password</a></li>
+                            <li><a href="/forgotPassword?id={{ Session::get('id') }}">Change Password</a></li>
                             <li><a class="md-trigger" data-modal="logout-modal"><i class="icon-logout-1"></i> Logout</a></li>
                         </ul>
                     </li>
