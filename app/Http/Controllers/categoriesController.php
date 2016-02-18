@@ -11,6 +11,7 @@ use DB;
 use Crypt;
 use Hash;
 use Flash;
+use Session;
 use Illuminate\Support\Facades\Input;
 
 use App\Users;
@@ -20,12 +21,12 @@ class categoriesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('checkAdminCookie');
+        $this->middleware('checkAdminSession');
     }
 
     /*public function addCategory()
     {
-        if(isset($_COOKIE["admin"]) && (base64_decode($_COOKIE["admin"])=="yes"))
+        if(Session::has('admin') && (Session::get('admin')=="yes"))
         {
             return view("pages.addCategory");
         }
@@ -40,7 +41,7 @@ class categoriesController extends Controller
             'tags' => 'required',
         ]);
 
-        $admin = Users::where('id', base64_decode($_COOKIE['id']))
+        $admin = Users::where('id', Session::get('id'))
             ->first();
 
         $category = New Categories();
@@ -61,7 +62,7 @@ class categoriesController extends Controller
 
     public function manageCategory()
     {
-        $categories = Categories::where('added_by', base64_decode($_COOKIE['id']))
+        $categories = Categories::where('added_by', Session::get('id'))
             ->paginate(10);
         return view("pages.manageCategory", ["categories" => $categories]);
     }
@@ -69,7 +70,7 @@ class categoriesController extends Controller
     public function editCategory($id)
     {
         $categories = Categories::where('id', $id)
-            ->where('added_by', base64_decode($_COOKIE['id']))
+            ->where('added_by', Session::get('id'))
             ->first();
 
         return view("pages.editCategory", ['categories'=>$categories]);
@@ -102,7 +103,7 @@ class categoriesController extends Controller
 
     public function updateCategoryPost()
     {
-        $categories = Categories::where('added_by', base64_decode($_COOKIE['id']))->get();
+        $categories = Categories::where('added_by', Session::get('id'))->get();
         $data = Input::get('enabled');
         foreach($categories as $category)
         {
@@ -124,10 +125,10 @@ class categoriesController extends Controller
 
     /*public function deleteCategory($id)
     {
-        if(isset($_COOKIE["admin"]) && (base64_decode($_COOKIE["admin"])=="yes"))
+        if(Session::has('admin') && (Session::get('admin')=="yes"))
         {
             $categories = Categories::where('id', $id)
-                ->where('added_by', base64_decode($_COOKIE['id']));
+                ->where('added_by', Session::get('id'));
             if($categories->delete())
             {
                 return view("pages.msg", ['title'=>'Success', 'msg'=>'Category deleted successfully. ']);

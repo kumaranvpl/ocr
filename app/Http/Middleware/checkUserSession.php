@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Session;
 
-class checkUserCookie
+class checkUserSession
 {
     /**
      * Handle an incoming request.
@@ -15,10 +16,13 @@ class checkUserCookie
      */
     public function handle($request, Closure $next)
     {
-        if(!isset($_COOKIE["admin"])  || (base64_decode($_COOKIE["admin"])!="no"))
+        if( Session::has('admin') && Session::get('admin')=='no')
+        {
+            return $next($request);
+        }
+        else
         {
             return redirect('/login');
         }
-        return $next($request);
     }
 }
