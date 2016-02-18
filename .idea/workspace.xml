@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d4d793d1-50e5-4447-8c6a-737653d35cf9" name="Default" comment="1. Link expired added,&#10;2. Bug fixes.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/CustomClasses/UUID.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/resetPassword.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/loginController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/loginController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/addPassword.blade.php" afterPath="$PROJECT_DIR$/resources/views/addPassword.blade.php" />
-    </list>
+    <list default="true" id="d4d793d1-50e5-4447-8c6a-737653d35cf9" name="Default" comment="1. Link expired added,&#10;2. Bug fixes." />
     <ignored path="learn.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
