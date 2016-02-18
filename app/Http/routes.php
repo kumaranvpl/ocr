@@ -51,6 +51,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/forgotPasswordMail/{token}', 'loginController@forgotPasswordMail' );
     Route::post('/forgotPasswordMail/{token}', 'loginController@forgotPasswordMailPost' );
 
+    
+
     Route::get('/admin/dashboard', 'adminPagesController@home' );
 
     Route::get('/admin/users/manage', 'adminPagesController@manageUser' );
