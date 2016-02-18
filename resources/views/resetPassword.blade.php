@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-    echo view('header')->with('title', "Password");
+echo view('header')->with('title', "Password");
 ?>
 
 <body class="fixed-left login-page">
@@ -17,7 +17,7 @@
                     {!! Form::label('Change password for your account') !!}
                 </div>
 
-                {{ Form::hidden('id', $_GET['id']) }}
+
 
                 <div class="form-group login-input">
                     <i class="fa fa-key overlay"></i>
@@ -31,7 +31,7 @@
 
                 <div class="row">
                     <div class="col-sm-6">
-                        {!! Form::submit('Add Password', ['class' => 'btn btn-success btn-block']) !!}
+                        {!! Form::submit('Reset Password', ['class' => 'btn btn-success btn-block']) !!}
                     </div>
                 </div>
                 {!! Form::close() !!}

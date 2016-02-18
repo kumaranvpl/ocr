@@ -16,6 +16,9 @@ use Session;
 
 use App\Users;
 use App\Companies;
+use App\Password_resets;
+use App\CustomClasses\UUID;
+
 
 class loginController extends Controller
 {
@@ -300,7 +303,13 @@ class loginController extends Controller
             ->first();
         if($users)
         {
-            $url = "/forgotPasswordMail?id=".base64_encode($users->id);
+            $token = new UUID;
+            $p_reset = new Password_resets;
+            $p_reset->email = $users->email;
+            $p_reset->token = $token;
+            $p_reset->save();
+            //$url = "/forgotPasswordMail?id=".base64_encode($users->id);
+            $url = url('/forgotPasswordMail', $token);
             Mail::send('pages.emails.forgotPassword', ['users' => $users, 'url' => $url], function ($m) use ($users) {
                 $m->from('donotreply@1000lookz.com', 'PaperWork - 1000lookz');
 
@@ -315,12 +324,21 @@ class loginController extends Controller
 
     }
 
-    public function forgotPasswordMail()
+    public function forgotPasswordMail($token)
     {
-        return view('addPassword');
+        $p_reset = Password_resets::where('token', $token)
+            ->first();
+        if($p_reset)
+        {
+            return view('resetPassword')->with('email', $p_reset->email);
+        }
+        else
+        {
+            return view("pages.emails.verifyMsg", ['title'=>'Failed', 'msg'=>'Invalid password reset request. Please try again']);
+        }
     }
 
-    public function forgotPasswordMailPost(Request $request)
+    public function forgotPasswordMailPost($token, Request $request)
     {
         $this->validate($request, [
             'password'   => '
@@ -332,7 +350,14 @@ class loginController extends Controller
                 same:password',
         ]);
 
-        $users = Users::where('id', base64_decode($request->id))
+        $p_reset = Password_resets::where('token', $token)
+            ->first();
+
+        if(!$p_reset)
+        {
+            return view("pages.emails.verifyMsg", ['title'=>'Failed', 'msg'=>'Invalid password reset request. Please try again']);
+        }
+        $users = Users::where('email', $p_reset->email)
             ->first();
         if($users)
         {
@@ -344,7 +369,8 @@ class loginController extends Controller
             {
                 /*$path = public_path().'/images/uploads/'.$users->added_by.'/'.$users->id;
                 File::makeDirectory($path, 0775, true);*/
-                return redirect("/login");
+                $p_reset->delete();
+                return view("pages.emails.verifyMsg", ['title'=>'Success', 'msg'=>'Password changed successfully']);
             }
             else
             {

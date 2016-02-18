@@ -12,9 +12,9 @@
 */
 
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 
 
@@ -48,8 +48,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/forgotPassword', 'loginController@forgotPassword' );
     Route::post('/forgotPassword', 'loginController@forgotPasswordPost' );
-    Route::get('/forgotPasswordMail', 'loginController@forgotPasswordMail' );
-    Route::post('/forgotPasswordMail', 'loginController@forgotPasswordMailPost' );
+    Route::get('/forgotPasswordMail/{token}', 'loginController@forgotPasswordMail' );
+    Route::post('/forgotPasswordMail/{token}', 'loginController@forgotPasswordMailPost' );
 
     Route::get('/admin/dashboard', 'adminPagesController@home' );
 
