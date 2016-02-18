@@ -12,6 +12,8 @@ use Crypt;
 use Hash;
 use Mail;
 use Flash;
+use Session;
+use File;
 
 use App\Users;
 
@@ -41,7 +43,7 @@ class adminPagesController extends Controller
             'name' => 'required',
         ]);
 
-        $admin = Users::where('id', base64_decode($_COOKIE['id']))
+        $admin = Users::where('id', Session::get('id'))
             ->first();
 
         $users = New Users;
@@ -53,7 +55,7 @@ class adminPagesController extends Controller
 
         if($users->save())
         {
-            $url = "localhost:8888/verifyMail?id=".base64_encode($users->id);
+            $url = "/verifyMail?id=".base64_encode($users->id);
             Mail::send('pages.emails.verification', ['users' => $users, 'url' => $url], function ($m) use ($users) {
                 $m->from('donotreply@1000lookz.com', 'PaperWork - 1000lookz');
 
@@ -71,7 +73,7 @@ class adminPagesController extends Controller
 
     public function manageUser()
     {
-        $users = Users::where('added_by', base64_decode($_COOKIE['id']))
+        $users = Users::where('added_by', Session::get('id'))
             ->where('is_confirmed', "yes")
             ->where('is_admin', "no")
             ->paginate(10);
@@ -81,7 +83,7 @@ class adminPagesController extends Controller
     public function editUser($id)
     {
         $users = Users::where('id', $id)
-            ->where('added_by', base64_decode($_COOKIE['id']))
+            ->where('added_by', Session::get('id'))
             ->first();
 
         return view("pages.editUser", ['users'=>$users]);
@@ -118,7 +120,7 @@ class adminPagesController extends Controller
     {
         $users = Users::where('id', $id)
             ->first();
-            //->where('added_by', base64_decode($_COOKIE['id']));
+            //->where('added_by', Session::get('id'));
 
         $path = public_path().'/uploads/'.$users->added_by.'/'.$users->id;
         File::deleteDirectory($path);

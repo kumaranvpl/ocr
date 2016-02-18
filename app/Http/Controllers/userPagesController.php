@@ -11,6 +11,7 @@ use DB;
 use Crypt;
 use Hash;
 use Mail;
+use Session;
 
 use Illuminate\Support\Facades\Input;
 use App\Users;
@@ -31,7 +32,7 @@ class userPagesController extends Controller
 
     public function uploads()
     {
-            $users = Users::where('id', base64_decode($_COOKIE['id']))
+            $users = Users::where('id', Session::get('id'))
                 ->first();
             $categories = Categories::where('added_by', $users->added_by)
                 ->where('is_enabled', "yes")
@@ -41,7 +42,7 @@ class userPagesController extends Controller
 
     public function types(Request $request)
     {
-            $users = Users::where('id', base64_decode($_COOKIE['id']))
+            $users = Users::where('id', Session::get('id'))
                 ->first();
             $category = Categories::where('id', base64_decode($request->category))
                 ->where('added_by', $users->added_by)
@@ -56,7 +57,7 @@ class userPagesController extends Controller
             'image' => 'required|mimes:jpg,png,jpeg',
             'bill_type'   => 'required',
         ]);
-        $users = Users::where('id', base64_decode($_COOKIE['id']))
+        $users = Users::where('id', Session::get('id'))
             ->first();
         if (Input::hasFile('image')) {
             $file            = Input::file('image');

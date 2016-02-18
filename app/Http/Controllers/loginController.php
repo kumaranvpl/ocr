@@ -95,7 +95,7 @@ class loginController extends Controller
         }
     }
 
-    public function verifyLogIn(Request $request)
+    public function logInPost(Request $request)
     {
 
         $this->validate($request, [
@@ -139,7 +139,7 @@ class loginController extends Controller
         }
     }
 
-    public function verifyRegisterPage(Request $request)
+    public function registerPagePost(Request $request)
     {
 
         $this->validate($request, [
@@ -168,7 +168,7 @@ class loginController extends Controller
         {
             $users->added_by = $users->id;
             $users->save();
-            echo $url = "localhost:8888/verifyMail?id=".base64_encode($users->id);
+            $url = "/verifyMail?id=".base64_encode($users->id);
             Mail::send('pages.emails.verification', ['users' => $users, 'url' => $url], function ($m) use ($users) {
                 $m->from('donotreply@1000lookz.com', 'PaperWork - 1000lookz');
 
@@ -183,7 +183,7 @@ class loginController extends Controller
 
     }
 
-    public function verifyVerifyPage(Request $request)
+    public function verifyPagePost(Request $request)
     {
 
         $this->validate($request, [
@@ -206,6 +206,9 @@ class loginController extends Controller
 
     public function verifyMail(Request $request)
     {
+        Session::forget('id');
+        Session::forget('admin');
+        Session::forget('name');
         if($request->id)
         {
             $user = Users::where('id', base64_decode($request->id))
@@ -282,26 +285,9 @@ class loginController extends Controller
 
     public function forgotPassword(Request $request)
     {
-        /*if(isset($_COOKIE['admin'])) {setcookie("admin", "", time() - 3600);}
-        if(isset($_COOKIE['id'])) {setcookie("admin", "", time() - 3600);}
-        if(isset($_COOKIE['name'])) {setcookie("admin", "", time() - 3600);}
-        $users = Users::where('id', base64_decode($request->id))
-            ->first();
-
-        if($users)
-        {
-            $url = "localhost:8888/forgotPasswordMail?id=".base64_encode($users->id);
-            Mail::send('pages.emails.forgotPassword', ['users' => $users, 'url' => $url], function ($m) use ($users) {
-                $m->from('donotreply@1000lookz.com', 'PaperWork - 1000lookz');
-
-                $m->to($users->email, $users->name)->subject('Reset Password');
-            });
-            return view("pages.emails.verifyMsg", ['title'=>'Success', 'msg'=>'Password reset link sent to mail.']);
-        }
-        else
-        {
-            return view("pages.emails.verifyMsg", ['title'=>'failed', 'msg'=>'Email does not exist']);
-        }*/
+        Session::forget('id');
+        Session::forget('admin');
+        Session::forget('name');
         return view('forgotPassword');
     }
 
@@ -314,7 +300,7 @@ class loginController extends Controller
             ->first();
         if($users)
         {
-            $url = "localhost:8888/forgotPasswordMail?id=".base64_encode($users->id);
+            $url = "/forgotPasswordMail?id=".base64_encode($users->id);
             Mail::send('pages.emails.forgotPassword', ['users' => $users, 'url' => $url], function ($m) use ($users) {
                 $m->from('donotreply@1000lookz.com', 'PaperWork - 1000lookz');
 

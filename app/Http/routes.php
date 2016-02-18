@@ -34,14 +34,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'loginController@home');
 
     Route::get('/login', 'loginController@logIn' );
-    Route::post('/login', 'loginController@verifyLogIn' );
+    Route::post('/login', 'loginController@logInPost' );
     Route::get('/logout', 'loginController@logOut' );
 
     Route::get('/register', 'loginController@registerPage' );
-    Route::post('/register', 'loginController@verifyRegisterPage' );
+    Route::post('/register', 'loginController@registerPagePost' );
 
     Route::get('/verify', 'loginController@verifyPage' );
-    Route::post('/verify', 'loginController@verifyVerifyPage' );
+    Route::post('/verify', 'loginController@verifyPagePost' );
 
     Route::get('/verifyMail', 'loginController@verifyMail' );
     Route::post('/verifyMail', 'loginController@verifyMailPost' );
