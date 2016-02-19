@@ -57,7 +57,7 @@ echo view('header')->with('title', "Manage Categories");
                             <table data-sortable class="table table-hover table-striped">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>S.No</th>
                                     <th>Category Name</th>
                                     <th>Fields Needed</th>
                                     <!--<th>Tags</th>-->

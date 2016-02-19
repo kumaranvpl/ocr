@@ -55,7 +55,7 @@ echo view('header')->with('title', "Manage Users");
                             <table data-sortable class="table table-hover table-striped">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>S.No</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Employee ID</th>
