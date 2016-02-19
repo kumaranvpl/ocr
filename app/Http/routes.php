@@ -46,10 +46,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/verifyMail', 'loginController@verifyMail' );
     Route::post('/verifyMail', 'loginController@verifyMailPost' );
 
-    Route::get('/forgotPassword', 'loginController@forgotPassword' );
-    Route::post('/forgotPassword', 'loginController@forgotPasswordPost' );
-    Route::get('/forgotPasswordMail/{token}', 'loginController@forgotPasswordMail' );
-    Route::post('/forgotPasswordMail/{token}', 'loginController@forgotPasswordMailPost' );
+    Route::get('/password/forgot', 'passwordController@forgotPassword' );
+    Route::post('/password/forgot', 'passwordController@forgotPasswordPost' );
+    Route::get('/forgotPasswordMail/{token}', 'passwordController@forgotPasswordMail' );
+    Route::post('/forgotPasswordMail/{token}', 'passwordController@forgotPasswordMailPost' );
+
+    Route::get('/password/change', 'passwordController@changePassword' );
+    Route::post('/password/change', 'passwordController@changePasswordPost' );
 
     Route::get('/admin/dashboard', 'adminPagesController@home' );
 

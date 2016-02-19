@@ -16,7 +16,7 @@ echo view('header')->with('title', "404 Page Not Found");
         <h1>404</h1>
         <h2>The page you are looking for is definitely not this!</h2><br>
         <br>
-        <a class="btn btn-primary btn-sm" href="/user/dashboard"><i class="fa fa-angle-left"></i> Back to Dashboard</a>
+        <a class="btn btn-primary btn-sm" href="/login"><i class="fa fa-angle-left"></i> Go Back</a>
     </div>
 </div>
 

@@ -4,6 +4,7 @@ namespace App\Console;
 
 use DB;
 use App\Users;
+use App\Password_resets;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -40,7 +41,18 @@ class Kernel extends ConsoleKernel
             {
                 $user->delete();
             }
-            })->daily();
+            })->daily()->withoutOverlapping();
+    }
+
+    protected function removeForgotPasswordRequests(Schedule $schedule)
+    {
+        $schedule->call(function(){
+            $p_resets = Password_resets::where('created_at', '<=', date('Y-m-d h:i:s',strtotime("-1 hour")));
+            foreach($p_resets as $p_reset)
+            {
+                $p_reset->delete();
+            }
+        })->hourly()->withoutOverlapping();
     }
 
 }

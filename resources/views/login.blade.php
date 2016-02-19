@@ -29,7 +29,7 @@
                             {!! Form::submit('Log In', ['class' => 'btn btn-success btn-block']) !!}
                         </div>
                         <div class="col-sm-6">
-                            <a href="/forgotPassword" class="btn btn-default btn-block">Forgot Password</a>
+                            <a href="/password/forgot" class="btn btn-default btn-block">Forgot Password</a>
                         </div>
                     </div>
                 {!! Form::close() !!}
