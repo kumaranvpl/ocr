@@ -66,9 +66,12 @@ echo view('header')->with('title', "Manage Users");
                                 </thead>
 
                                 <tbody>
+                                {{--*/ $count = (($users->currentPage() - 1 ) * $users->perPage() ) /*--}}
                                 @foreach($users as $user)
                                     <tr>
-                                        <td>{{ $user->id }}</td><td><strong>{{ $user->name }}</strong></td>
+                                        <!--<td>{{ $user->id }}</td>-->
+                                        <td>{{ ++$count }}</td>
+                                        <td><strong>{{ $user->name }}</strong></td>
                                         <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                                         <td>{{ $user->employee_id }}</td>
                                         <td>{{ $user->company }}</td>

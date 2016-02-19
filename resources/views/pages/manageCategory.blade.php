@@ -68,9 +68,12 @@ echo view('header')->with('title', "Manage Categories");
                                 </thead>
 
                                 <tbody>
+                                {{--*/ $count = (($categories->currentPage() - 1 ) * $categories->perPage() ) /*--}}
                                 @foreach($categories as $category)
                                     <tr>
-                                        <td>{{ $category->id }}</td><td><strong>{{ $category->category_name }}</strong></td>
+                                        <!--<td>{{ $category->id }}</td>-->
+                                        <td>{{ ++$count }}</td>
+                                        <td><strong>{{ $category->category_name }}</strong></td>
                                         <td>{{ $category->fields_needed }}</td>
                                         <!--<td>{{ $category->tags }}</td>-->
                                         <td>{{ $category->time_created }}</td>
