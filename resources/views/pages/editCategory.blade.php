@@ -45,10 +45,10 @@ echo view('header')->with('title', "Edit Category");
                                 {!! Form::text('fields', $categories->fields_needed, ['class' => 'form-control', 'placeholder' => 'Enter field(s) needed in comma separated format']) !!}
                             </div>
 
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 {!! Form::label('tags', 'Tags in category(Ex: Curry, Roti)', array('for' => 'tags')) !!}
                                 {!! Form::text('tags', $categories->tags, ['class' => 'form-control', 'placeholder' => 'Enter tags in comma separated format']) !!}
-                            </div>
+                            </div>-->
 
                             {{ Form::hidden('invisible_id', $categories->id, array('id' => 'invisible_id')) }}
 

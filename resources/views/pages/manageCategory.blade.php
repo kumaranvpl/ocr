@@ -60,7 +60,7 @@ echo view('header')->with('title', "Manage Categories");
                                     <th>ID</th>
                                     <th>Category Name</th>
                                     <th>Fields Needed</th>
-                                    <th>Tags</th>
+                                    <!--<th>Tags</th>-->
                                     <th>Added/Updated On</th>
                                     <th data-sortable="false">Edit</th>
                                     <th data-sortable="false">Enable/Disable</th>
@@ -72,7 +72,7 @@ echo view('header')->with('title', "Manage Categories");
                                     <tr>
                                         <td>{{ $category->id }}</td><td><strong>{{ $category->category_name }}</strong></td>
                                         <td>{{ $category->fields_needed }}</td>
-                                        <td>{{ $category->tags }}</td>
+                                        <!--<td>{{ $category->tags }}</td>-->
                                         <td>{{ $category->time_created }}</td>
                                         <td>
                                             <div class="btn-group btn-group-xs">

@@ -80,13 +80,13 @@ class categoriesController extends Controller
     {
         $this->validate($request, [
             'fields' => 'required',
-            'tags' => 'required',
+            //'tags' => 'required',
         ]);
 
         $category = Categories::where('id', $request->invisible_id)
             ->first();
         $category->fields_needed = $request->fields;
-        $category->tags = $request->tags;
+        //$category->tags = $request->tags;
         $category->time_created = date("Y-m-d h:i:s");
 
         if($category->save())
