@@ -61,6 +61,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/admin/users/edit/{id}', 'adminPagesController@editUserPost' );
     Route::get('/admin/users/add', 'adminPagesController@addUser' );
     Route::post('/admin/users/add', 'adminPagesController@addUserPost' );
+
+    Route::get('/admin/users/delete/confirmation/{id}', 'adminPagesController@deleteUserConfirmation');
     Route::get('/admin/users/delete/{id}', 'adminPagesController@deleteUser');
 
     Route::get('/admin/categories/manage', 'categoriesController@manageCategory' );

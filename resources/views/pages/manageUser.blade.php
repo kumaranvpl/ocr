@@ -79,7 +79,7 @@ echo view('header')->with('title', "Manage Users");
                                         <td>
                                             <div class="btn-group btn-group-xs">
                                                 <a href="/admin/users/edit/{{ $user->id }}" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                                                <a href="/admin/users/delete/{{ $user->id }}" data-toggle="tooltip" title="Delete" class="btn btn-default"><i class="fa fa-trash"></i></a>
+                                                <a href="/admin/users/delete/confirmation/{{ $user->id }}" data-toggle="tooltip" title="Delete" class="btn btn-default"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </td>
                                     </tr>

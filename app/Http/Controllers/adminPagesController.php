@@ -116,6 +116,13 @@ class adminPagesController extends Controller
         }
     }
 
+    public function deleteUserConfirmation($id)
+    {
+        $users = Users::where('id', $id)
+            ->first();
+        return view('pages.deleteUserConfirmation')->with('users', $users);
+    }
+
     public function deleteUser($id)
     {
         $users = Users::where('id', $id)
