@@ -32,7 +32,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <strong>{{ Session::get('name') }}</strong> <i class="fa fa-caret-down"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">My Profile</a></li>
-                            <li><a href="/changePassword">Change Password</a></li>
+                            <li><a href="/password/change">Change Password</a></li>
                             <li><a class="md-trigger" data-modal="logout-modal"><i class="icon-logout-1"></i> Logout</a></li>
                         </ul>
                     </li>

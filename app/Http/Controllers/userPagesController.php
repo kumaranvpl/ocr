@@ -12,6 +12,7 @@ use Crypt;
 use Hash;
 use Mail;
 use Session;
+use Flash;
 
 use Illuminate\Support\Facades\Input;
 use App\Users;

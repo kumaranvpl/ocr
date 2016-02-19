@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-    echo view('header')->with('title', "Add Password");
+echo view('header')->with('title', "Change Password");
 ?>
 
 <body class="fixed-left login-page">
@@ -14,24 +14,27 @@
 
                 {!! Form::open(['role' => 'form']) !!}
                 <div class="form-group login-input">
-                    {!! Form::label('Add password for your account') !!}
-                </div>
-
-                {{ Form::hidden('id', $_GET['id']) }}
-
-                <div class="form-group login-input">
-                    <i class="fa fa-key overlay"></i>
-                    {!! Form::password('password', ['class' => 'form-control text-input', 'placeholder' => 'Password']) !!}
+                    {!! Form::label('Change password for your account') !!}
                 </div>
 
                 <div class="form-group login-input">
                     <i class="fa fa-key overlay"></i>
-                    {!! Form::password('confirm_password', ['class' => 'form-control text-input', 'placeholder' => 'Confirm Password']) !!}
+                    {!! Form::password('old_password', ['class' => 'form-control text-input', 'placeholder' => 'Current Password']) !!}
+                </div>
+
+                <div class="form-group login-input">
+                    <i class="fa fa-key overlay"></i>
+                    {!! Form::password('new_password', ['class' => 'form-control text-input', 'placeholder' => 'New Password']) !!}
+                </div>
+
+                <div class="form-group login-input">
+                    <i class="fa fa-key overlay"></i>
+                    {!! Form::password('confirm_new_password', ['class' => 'form-control text-input', 'placeholder' => 'Confirm New Password']) !!}
                 </div>
 
                 <div class="row">
                     <div class="col-sm-6">
-                        {!! Form::submit('Add Password', ['class' => 'btn btn-success btn-block']) !!}
+                        {!! Form::submit('Change Password', ['class' => 'btn btn-success btn-block']) !!}
                     </div>
                 </div>
                 {!! Form::close() !!}
