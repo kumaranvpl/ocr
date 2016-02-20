@@ -13,6 +13,7 @@ use Hash;
 use Mail;
 use Session;
 use Flash;
+use Image;
 
 use Illuminate\Support\Facades\Input;
 use App\Users;
@@ -82,6 +83,13 @@ class userPagesController extends Controller
             else if($request->bill_type == "texture")
             {
                 $json = file_get_contents('http://1000lookz.com:40001/bills/coloured?url=http://www.1000lookz.com/demo/sample/bills/color/1color.jpg&isProcess=True&Range=5&Diff=5');
+                $obj = json_decode($json);
+            }
+            else if($request->bill_type == "cheque")
+            {
+                $data = (string) Image::make($destinationPath.'/'.$filename)->encode('data-url');
+                $ripped_data = preg_replace('#^data:image/[^;]+;base64,#', '', $data);
+                $json = file_get_contents('http://192.168.0.117:5000/test?bs64='.$ripped_data);
                 $obj = json_decode($json);
             }
             return view("pages.user.displayResult", ["json_res" => $obj]);
