@@ -32,7 +32,6 @@ echo view('header')->with('title', "Processing Result");
                                 {!! $json_res->BILL_TYPE or "Unknown Bill Type" !!}
                             </strong>
                         </h2>
-
                     </div>
                     <div class="widget-content padding">
                         <div id="basic-form">

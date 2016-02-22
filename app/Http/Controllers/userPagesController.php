@@ -87,10 +87,12 @@ class userPagesController extends Controller
             }
             else if($request->bill_type == "cheque")
             {
-                $data = (string) Image::make($destinationPath.'/'.$filename)->encode('data-url');
-                $ripped_data = preg_replace('#^data:image/[^;]+;base64,#', '', $data);
-                $json = file_get_contents('http://192.168.0.117:5000/test?bs64='.$ripped_data);
+                //$data = (string) Image::make($destinationPath.'/'.$filename)->fit(600, 600)->encode('data-url');
+                //$ripped_data = preg_replace('#^data:image/[^;]+;base64,#', '', $data);
+                $json = file_get_contents('http://192.168.0.117:5000/test?url=https://s3-ap-southeast-1.amazonaws.com/try1000looks.com/user_uploaded_pics/rotated.jpg');
                 $obj = json_decode($json);
+                return view("pages.user.chequeProcess", ["json_res" => $obj]);/*Current code*/
+                //return view("pages.user.chequeProcess");
             }
             return view("pages.user.displayResult", ["json_res" => $obj]);
         }
