@@ -14,4 +14,9 @@ class Categories extends Model
     {
         return $this->belongsToMany('App\Fields')->withTimestamps();
     }
+
+    public function getFieldList()
+    {
+        return $this->fields->lists('id')->toArray();
+    }
 }

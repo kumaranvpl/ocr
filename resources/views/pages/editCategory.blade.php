@@ -40,9 +40,14 @@ echo view('header')->with('title', "Edit Category");
                                 {!! Form::label('name_value', $categories->category_name, array('style' => 'font-size:18px')) !!}
                             </div>
 
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 {!! Form::label('fields', 'Field(s) needed(Ex: Total, Date)', array('for' => 'fields')) !!}
                                 {!! Form::text('fields', $categories->fields_needed, ['class' => 'form-control', 'placeholder' => 'Enter field(s) needed in comma separated format']) !!}
+                            </div>-->
+
+                            <div class="form-group">
+                                {!! Form::label('fields', 'Field(s) needed', array('for' => 'fields1')) !!}
+                                {!! Form::select('fields[]', $fields, $categories->getFieldList(), ['class' => 'form-control', 'multiple']) !!}
                             </div>
 
                             <!--<div class="form-group">

@@ -46,3 +46,5 @@
 <script src="{{ URL::asset('assets/js/apps/todo.js') }}"></script>
 <script src="{{ URL::asset('assets/js/apps/notes.js') }}"></script>
 <script src="{{ URL::asset('assets/js/pages/index.js') }}"></script>
+
+<script src="{{ URL::asset('assets/libs/jquery-redirect/jquery.redirect.js') }}"></script>

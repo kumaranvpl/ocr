@@ -14,6 +14,8 @@ use Mail;
 use Session;
 use Flash;
 use Image;
+use Curl;
+use JavaScript;
 
 use Illuminate\Support\Facades\Input;
 use App\Users;
@@ -87,12 +89,22 @@ class userPagesController extends Controller
             }
             else if($request->bill_type == "cheque")
             {
-                //$data = (string) Image::make($destinationPath.'/'.$filename)->fit(600, 600)->encode('data-url');
-                //$ripped_data = preg_replace('#^data:image/[^;]+;base64,#', '', $data);
-                $json = file_get_contents('http://192.168.0.117:5000/test?url=https://s3-ap-southeast-1.amazonaws.com/try1000looks.com/user_uploaded_pics/rotated.jpg');
-                $obj = json_decode($json);
-                return view("pages.user.chequeProcess", ["json_res" => $obj]);/*Current code*/
-                //return view("pages.user.chequeProcess");
+                $data = (string) Image::make($destinationPath.'/'.$filename)->fit(600, 600)->encode('data-url');
+                $ripped_data = preg_replace('#^data:image/[^;]+;base64,#', '', $data);
+                $response = Curl::to('http://192.168.0.117:5000/test')
+                    ->withData( array('data' => $ripped_data) )
+                    ->asJson()
+                    ->post();
+                
+                if(!empty($response->out))
+                {
+                    JavaScript::put([
+                        'img_data' => $response->out,
+                    ]);
+                }
+                /*$json = file_get_contents('http://192.168.0.117:5000/test?url=https://s3-ap-southeast-1.amazonaws.com/try1000looks.com/user_uploaded_pics/rotated.jpg');
+                $obj = json_decode($json);*/
+                return view("pages.user.chequeProcess", ["json_res" => $response]);
             }
             return view("pages.user.displayResult", ["json_res" => $obj]);
         }
@@ -100,5 +112,14 @@ class userPagesController extends Controller
         {
             return "Upload Failed";
         }
+    }
+
+    public function croppedCheque(Request $request)
+    {
+        $response = Curl::to('http://192.168.0.117:5000/receive')
+            ->withData( array('data' => $request->response) )
+            ->asJson()
+            ->post();
+        dd($response);
     }
 }

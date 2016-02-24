@@ -74,7 +74,16 @@ echo view('header')->with('title', "Manage Categories");
                                         <!--<td>{{ $category->id }}</td>-->
                                         <td>{{ ++$count }}</td>
                                         <td><strong>{{ $category->category_name }}</strong></td>
-                                        <td>{{ $category->fields_needed }}</td>
+                                        <!--<td>{{ $category->fields_needed }}</td>-->
+                                        <td>
+                                            @if($category->fields->isEmpty())
+                                                <b>"No fields added yet"</b>
+                                            @else
+                                                @foreach($category->fields as $field)
+                                                    {{ $field->name }},
+                                                @endforeach
+                                            @endif
+                                        </td>
                                         <!--<td>{{ $category->tags }}</td>-->
                                         <td>{{ $category->time_created }}</td>
                                         <td>
