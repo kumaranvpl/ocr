@@ -23,6 +23,9 @@
         <link href="{{ URL::asset('assets/libs/sortable/sortable-theme-bootstrap.css') }}" rel="stylesheet" />
         <link href="{{ URL::asset('assets/libs/bootstrap-datepicker/css/datepicker.css') }}" rel="stylesheet" />
         <link href="{{ URL::asset('assets/libs/jquery-icheck/skins/all.css') }}" rel="stylesheet" />
+        <link href="{{ URL::asset('assets/libs/bootstrap-select2/css/select2.css') }}" rel="stylesheet"/>
+        <!-- <link rel="stylesheet" href="{{ URL::asset('assets/libs/select2/css/select2.min.css') }}"  />-->
+
         <!-- Code Highlighter for Demo -->
         <link href="{{ URL::asset('assets/libs/prettify/github.css') }}" rel="stylesheet" />
 

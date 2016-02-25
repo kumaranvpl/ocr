@@ -47,7 +47,7 @@ echo view('header')->with('title', "Edit Category");
 
                             <div class="form-group">
                                 {!! Form::label('fields', 'Field(s) needed', array('for' => 'fields1')) !!}
-                                {!! Form::select('fields[]', $fields, $categories->getFieldList(), ['class' => 'form-control', 'multiple']) !!}
+                                {!! Form::select('fields[]', $fields, $categories->getFieldList(), ['id' => 'fields_list', 'class' => 'form-control', 'multiple']) !!}
                             </div>
 
                             <!--<div class="form-group">
@@ -77,5 +77,9 @@ echo view('header')->with('title', "Edit Category");
 
 <div class="md-overlay"></div>
 @include('footer');
+
+<script>
+    $('#fields_list').select2();
+</script>
 </body>
 </html>

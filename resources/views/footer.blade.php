@@ -19,7 +19,7 @@
 <script src="{{ URL::asset('assets/libs/sortable/sortable.min.js') }}"></script>
 <script src="{{ URL::asset('assets/libs/bootstrap-fileinput/bootstrap.file-input.js') }}"></script>
 <script src="{{ URL::asset('assets/libs/bootstrap-select/bootstrap-select.min.js') }}"></script>
-<script src="{{ URL::asset('assets/libs/bootstrap-select2/select2.min.js') }}"></script>
+<script src="{{ URL::asset('assets/libs/bootstrap-select2/js/select2.full.min.js') }}"></script>
 <script src="{{ URL::asset('assets/libs/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ URL::asset('assets/libs/pace/pace.min.js') }}"></script>
 <script src="{{ URL::asset('assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
@@ -48,3 +48,4 @@
 <script src="{{ URL::asset('assets/js/pages/index.js') }}"></script>
 
 <script src="{{ URL::asset('assets/libs/jquery-redirect/jquery.redirect.js') }}"></script>
+<!--<script src="{{ URL::asset('assets/libs/select2/js/select2.min.js') }}"></script>-->

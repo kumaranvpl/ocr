@@ -95,7 +95,7 @@ class userPagesController extends Controller
                     ->withData( array('data' => $ripped_data) )
                     ->asJson()
                     ->post();
-                
+
                 if(!empty($response->out))
                 {
                     JavaScript::put([
