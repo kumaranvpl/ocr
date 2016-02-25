@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-<?php
-echo view('header')->with('title', "Forgot Password");
-?>
+
+@include('header', array('title' => 'Forgot Password',))
 
 <body class="fixed-left login-page">
 

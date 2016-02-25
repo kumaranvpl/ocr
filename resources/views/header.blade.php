@@ -1,5 +1,3 @@
-
-
 <head>
         <meta charset="UTF-8">
         <title>{{$title}}</title>
@@ -59,5 +57,3 @@
         <link rel="apple-touch-icon" sizes="144x144" href="http://www.1000lookz.com/lib/img/logo.png" />
         <link rel="apple-touch-icon" sizes="152x152" href="http://www.1000lookz.com/lib/img/logo.png" />
     </head>
-
-

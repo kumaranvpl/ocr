@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html>
-<?php
-echo view('header')->with('title', "Register");
 
-?>
-
-
+@include('header', array('title' => 'Register',))
 
 <body class="fixed-left login-page">
 

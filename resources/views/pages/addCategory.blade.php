@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
-<?php
-echo view('header')->with('title', "Add New Category");
 
-?>
+@include('header', array('title' => 'Add New Category',))
 
 <body class="fixed-left">
 

@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
-<?php
-echo view('header')->with('title', "Admin Dashboard");
 
-?>
+@include('header', array('title' => 'Admin Dashboard',))
 
 <body class="fixed-left">
 

@@ -81,7 +81,6 @@ class categoriesController extends Controller
     public function editCategoryPost(Request $request)
     {
         $this->validate($request, [
-            //'fields' => 'required',
             'fields' => 'required',
             //'tags' => 'required',
         ]);
@@ -90,14 +89,12 @@ class categoriesController extends Controller
 
         $category = Categories::where('id', $request->invisible_id)
             ->first();
-        //$category->fields_needed = $request->fields;
         //$category->tags = $request->tags;
         $category->time_created = date("Y-m-d h:i:s");
 
-        $category->fields()->sync($request->input('fields'));
-
         if($category->save())
         {
+            $category->fields()->sync($request->input('fields'));
             Flash::success('Category values updated successfully.');
             return redirect('/admin/categories/manage');
         }

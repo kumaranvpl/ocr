@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
-<?php
-echo view('header')->with('title', "Processing Cheque");
 
-?>
+@include('header', array('title' => 'Processing Cheque',))
 
 <body class="fixed-left">
 

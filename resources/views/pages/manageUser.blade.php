@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
-<?php
-echo view('header')->with('title', "Manage Users");
 
-?>
-
+@include('header', array('title' => 'Manage Users',))
 
 <body class="fixed-left">
 

@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
-<?php
-echo view('header')->with('title', "Manage Categories");
 
-?>
-
+@include('header', array('title' => 'Manage Categories',))
 
 <body class="fixed-left">
 
@@ -46,7 +43,6 @@ echo view('header')->with('title', "Manage Categories");
                                 </div>
                                 <div class="col-md-8">
                                     <div class="toolbar-btn-action">
-                                        <!--<a href="/admin/categories/add" class="btn btn-success"><i class="fa fa-refresh"></i> Update</a>-->
                                         {{ Form::button('<i class="fa fa-refresh"></i> Update Preferences', ['type' => 'submit', 'class' => 'btn btn-success'] )  }}
                                     </div>
                                 </div>
@@ -74,7 +70,6 @@ echo view('header')->with('title', "Manage Categories");
                                         <!--<td>{{ $category->id }}</td>-->
                                         <td>{{ ++$count }}</td>
                                         <td><strong>{{ $category->category_name }}</strong></td>
-                                        <!--<td>{{ $category->fields_needed }}</td>-->
                                         <td>
                                             @if($category->fields->isEmpty())
                                                 <b>"No fields added yet"</b>
