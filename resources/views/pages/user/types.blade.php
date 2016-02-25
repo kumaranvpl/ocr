@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
-<?php
-echo view('header')->with('title', "Uploads");
 
-?>
+@include('header', array('title' => 'Uploads',))
 
 <body class="fixed-left">
 

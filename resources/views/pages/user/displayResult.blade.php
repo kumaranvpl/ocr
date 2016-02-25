@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
-<?php
-echo view('header')->with('title', "Processing Result");
 
-?>
+@include('header', array('title' => 'Processing Result',))
 
 <body class="fixed-left">
 

@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
-<?php
-echo view('header')->with('title', "404 Page Not Found");
 
-?>
+@include('header', array('title' => '404 Page Not Found',))
 
 <body class="fixed-left">
 

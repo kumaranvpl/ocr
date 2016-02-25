@@ -1,5 +1,3 @@
-
-
 <head>
         <meta charset="UTF-8">
         <title>{{$title}}</title>
@@ -23,6 +21,9 @@
         <link href="{{ URL::asset('assets/libs/sortable/sortable-theme-bootstrap.css') }}" rel="stylesheet" />
         <link href="{{ URL::asset('assets/libs/bootstrap-datepicker/css/datepicker.css') }}" rel="stylesheet" />
         <link href="{{ URL::asset('assets/libs/jquery-icheck/skins/all.css') }}" rel="stylesheet" />
+        <link href="{{ URL::asset('assets/libs/bootstrap-select2/css/select2.css') }}" rel="stylesheet"/>
+        <!-- <link rel="stylesheet" href="{{ URL::asset('assets/libs/select2/css/select2.min.css') }}"  />-->
+
         <!-- Code Highlighter for Demo -->
         <link href="{{ URL::asset('assets/libs/prettify/github.css') }}" rel="stylesheet" />
 
@@ -56,5 +57,3 @@
         <link rel="apple-touch-icon" sizes="144x144" href="http://www.1000lookz.com/lib/img/logo.png" />
         <link rel="apple-touch-icon" sizes="152x152" href="http://www.1000lookz.com/lib/img/logo.png" />
     </head>
-
-

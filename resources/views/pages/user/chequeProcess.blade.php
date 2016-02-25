@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
-<?php
-echo view('header')->with('title', "Processing Cheque");
 
-?>
+@include('header', array('title' => 'Processing Cheque',))
 
 <body class="fixed-left">
 
@@ -38,19 +36,22 @@ echo view('header')->with('title', "Processing Cheque");
                                         <div class="img-wrap">
                                             <img id="image" src="{{ $json_res->out }}" >
                                         </div>
-                                        <button onclick="getdatafunc()" id="btnSubmit" type="button" class="btn btn-info" data-method="getCropBoxData" data-option="" data-target="#putData">
-                                            Get Crop Box Data
-                                        </button>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6 col-md-offset-3">
+                                    <button onclick="getdatafunc()" id="btnSubmit" type="button" class="btn btn-info" data-method="getCropBoxData" data-option="" >
+                                        Get Crop Box Data
+                                    </button>
+                            </div>
+
                         @else
                             Error
-                            <img id="image" src="http://3.bp.blogspot.com/--Hys3NEOL1s/UKwRTpy1XeI/AAAAAAAAD7I/2IDx2Xqhbps/s1600/can_cts+copy.jpg">
+                            <!--<img id="image" src="http://3.bp.blogspot.com/--Hys3NEOL1s/UKwRTpy1XeI/AAAAAAAAD7I/2IDx2Xqhbps/s1600/can_cts+copy.jpg">
                             <br>
                             <button onclick="getdatafunc()" id="btnSubmit" type="button" class="btn btn-info" data-method="getCropBoxData" data-option="" data-target="#putData">
                                 Get Crop Box Data
-                            </button>
+                            </button>-->
                         @endif
                     </div>
 
@@ -69,13 +70,13 @@ echo view('header')->with('title', "Processing Cheque");
 
         crop: function(e) {
             // Output the result data for cropping image.
-            console.log(e.x);
+            /*console.log(e.x);
             console.log(e.y);
             console.log(e.width);
             console.log(e.height);
             console.log(e.rotate);
             console.log(e.scaleX);
-            console.log(e.scaleY);
+            console.log(e.scaleY);*/
         }
     });
 
@@ -83,7 +84,9 @@ echo view('header')->with('title', "Processing Cheque");
     {
         var $image = $('#image');
         var data = $image.cropper('getCropBoxData');
-        console.log(JSON.stringify(data));
+        data.img_data = img_data;
+        //console.log(JSON.stringify(data));
+        $.redirect("/user/uploads/cheque/cropped", { response: JSON.stringify(data)});
     }
 
 

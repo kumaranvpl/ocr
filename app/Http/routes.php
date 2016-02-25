@@ -78,6 +78,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/user/uploads/types', 'userPagesController@typesPost' );
     Route::get('/user/uploads', 'userPagesController@uploads' );
 
+    Route::post('/user/uploads/cheque/cropped', 'userPagesController@croppedCheque' );
+
     Route::get('/user/dashboard', 'userPagesController@home' );
 
     /*Route::controllers([

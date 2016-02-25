@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
-<?php
-echo view('header')->with('title', "Delete User");
 
-?>
-
+@include('header', array('title' => 'Delete User',))
 
 <body class="fixed-left">
 

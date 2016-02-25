@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
-<?php
-echo view('header')->with('title', "Edit Category");
 
-?>
+@include('header', array('title' => 'Edit Category',))
 
 <body class="fixed-left">
 
@@ -41,8 +39,8 @@ echo view('header')->with('title', "Edit Category");
                             </div>
 
                             <div class="form-group">
-                                {!! Form::label('fields', 'Field(s) needed(Ex: Total, Date)', array('for' => 'fields')) !!}
-                                {!! Form::text('fields', $categories->fields_needed, ['class' => 'form-control', 'placeholder' => 'Enter field(s) needed in comma separated format']) !!}
+                                {!! Form::label('fields', 'Field(s) needed', array('for' => 'fields1')) !!}
+                                {!! Form::select('fields[]', $fields, $categories->getFieldList(), ['id' => 'fields_list', 'class' => 'form-control', 'multiple']) !!}
                             </div>
 
                             <!--<div class="form-group">
@@ -72,5 +70,9 @@ echo view('header')->with('title', "Edit Category");
 
 <div class="md-overlay"></div>
 @include('footer');
+
+<script>
+    $('#fields_list').select2();
+</script>
 </body>
 </html>

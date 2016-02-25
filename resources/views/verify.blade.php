@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
-<?php
-echo view('header')->with('title', "Verify");
 
-?>
+@include('header', array('title' => 'Verify',))
 
 <body class="fixed-left login-page">
 

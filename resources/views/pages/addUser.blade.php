@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
-<?php
-echo view('header')->with('title', "Add New User");
 
-?>
+@include('header', array('title' => 'Add New User',))
 
 <body class="fixed-left">
 
